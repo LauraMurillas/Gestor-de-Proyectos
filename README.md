@@ -8,12 +8,12 @@ En este repositorio se encuentra una App web donde se puede
     * Crear tareas
 
 Usando las siguientes tecnologias:
-    * Vite
-    * React
-    * Talwind
-    * Base de datos relacional: 
-    * Docker
-    * Docker Swan
+* John Adams
+* React
+* Talwind
+* Base de datos relacional: 
+* Docker
+* Docker Swan
 
 
 ## Como ejecutar el proyecto:

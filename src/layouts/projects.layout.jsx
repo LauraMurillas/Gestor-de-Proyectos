@@ -10,6 +10,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { Button } from "@mui/material";
 import { ProjectProvider } from "../context/ProjectProvider";
 
+
 const Wrapper = styled.div`
     background-color: #edede9;
     display: flex;
@@ -39,7 +40,7 @@ function ProjectsLayout() {
                         className={`px-3 py-2 text-white border border-transparent hover:border-slate-500 rounded-3xl hover:text-shadow-offset-y-2 transition__links
                             ${location.pathname === "/projects" ? 'bg-slate-500' : ''}`
                         }
-                        >{ "Projects".toUpperCase() }</Link>
+                    >{ "Projects".toUpperCase() }</Link>
                     <Link
                         className="uppercase px-3 py-2 border text-white border-transparent hover:border-slate-500 hover:bg-slate-500 mr-0 ml-auto rounded-3xl transition__links"
                         to="/logout">Logout</Link>    

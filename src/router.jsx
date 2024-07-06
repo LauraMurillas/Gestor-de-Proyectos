@@ -16,8 +16,14 @@ import GestionTasks, { loader as loaderTasks } from "./pages/tasks/gestion-tasks
 import { AuthProvider } from "./context/AuthProvider";
 import RouteProtected from "./layouts/route-protected.layout";
 
+import IndexPage from "./pages/projects/index-page";
 const routes = createBrowserRouter([
     {// se deberian controlar el token de alguna forma
+        path: "/",
+        element:  <AuthLayout />,
+        loader: IndexPage
+    },
+    {     
         path: "/projects",
         element: (() => (
             <RouteProtected>

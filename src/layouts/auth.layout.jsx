@@ -30,11 +30,11 @@ const Wrapper = styled.div`
 
 function AuthLayout() {
 
-    const menuItems = [];//useLoaderData();
+    const menuItems = [];  //useLoaderData();
     const location = useLocation();
     const navigate = useNavigate();
 
-    const hidden = (value) => value === "/" || value == "/login" ? "hidden" : "";
+    //const hidden = (value) => value === "/" || value == "/login" ? "hidden" : "";
 
     const handlerBack = ev => {
         ev.preventDefault();

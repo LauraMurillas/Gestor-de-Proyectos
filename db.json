@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "email": "admin@admin.com",
+      "name": "Juan Martin",
+      "password": "admin",
+      "isLoged": true,
+      "id": "a052"
+    },
+    {
+      "id": "cc81DFG",
+      "name": "benja gonzalez",
+      "email": "benaj3@benja.com",
+      "password": "normal",
+      "isLoged": false
+    }
+  ]
+}

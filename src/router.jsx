@@ -17,11 +17,12 @@ import { AuthProvider } from "./context/AuthProvider";
 import RouteProtected from "./layouts/route-protected.layout";
 
 import IndexPage from "./pages/projects/index-page";
+
 const routes = createBrowserRouter([
     {// se deberian controlar el token de alguna forma
         path: "/",
-        element:  <AuthLayout />,
-        loader: IndexPage
+        element:  <IndexPage />,
+        //loader: IndexPage
     },
     {     
         path: "/projects",

@@ -1,69 +1,69 @@
-const Project = require('../../models/Project');
+const apiUrl = 'http://localhost:3000/api/projects';
 
-// Obtener todos los proyectos
-async function getProjects() {
-  try {
-    return await Project.findAll();
-  } catch (e) {
-    throw new Error('ERROR - [getProjects]: ' + e.message);
-  }
-}
-
-// Crear un nuevo proyecto
-async function createProject(projectData) {
-  try {
-    const newProject = await Project.create(projectData);
-    return newProject;
-  } catch (e) {
-    throw new Error('ERROR - [createProject]: ' + e.message);
-  }
-}
-
-// Obtener un proyecto por ID
-async function getProjectById(id) {
-  try {
-    const project = await Project.findByPk(id);
-    if (!project) {
-      throw new Error(`Project with id ${id} not found`);
+export const get_projects = async function () {
+    try {
+        const response = await fetch(apiUrl, { method: 'GET' });
+        if (!response.ok) {
+            throw new Error('Failed to fetch projects');
+        }
+        return await response.json();
+    } catch (e) {
+        throw new Error('ERROR - [get projects]: ' + e.message);
     }
-    return project;
-  } catch (e) {
-    throw new Error('ERROR - [getProjectById]: ' + e.message);
-  }
-}
+};
 
-// Actualizar un proyecto existente
-async function updateProject(id, data) {
-  try {
-    const project = await Project.findByPk(id);
-    if (!project) {
-      throw new Error(`Project with id ${id} not found`);
+export const get_project_by_id = async function (id) {
+    try {
+        const response = await fetch(`${apiUrl}/${id}`, { method: 'GET' });
+        if (!response.ok) {
+            throw new Error('Failed to fetch project');
+        }
+        return await response.json();
+    } catch (e) {
+        throw new Error('ERROR - [get project by id]: ' + e.message);
     }
-    const updatedProject = await project.update(data);
-    return updatedProject;
-  } catch (e) {
-    throw new Error('ERROR - [updateProject]: ' + e.message);
-  }
-}
+};
 
-// Eliminar un proyecto por ID
-async function deleteProject(id) {
-  try {
-    const project = await Project.findByPk(id);
-    if (!project) {
-      throw new Error(`Project with id ${id} not found`);
+export const create_project = async function (projectData) {
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            body: JSON.stringify(projectData),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) {
+            throw new Error('Failed to create project');
+        }
+        return await response.json();
+    } catch (e) {
+        throw new Error('ERROR - [create project]: ' + e.message);
     }
-    await project.destroy();
-    return { message: `Project with id ${id} deleted successfully` };
-  } catch (e) {
-    throw new Error('ERROR - [deleteProject]: ' + e.message);
-  }
-}
+};
 
-module.exports = {
-  getProjects,
-  createProject,
-  getProjectById,
-  updateProject,
-  deleteProject
+export const update_project = async function (id, projectData) {
+    try {
+        const response = await fetch(`${apiUrl}/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(projectData),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) {
+            throw new Error('Failed to update project');
+        }
+        return await response.json();
+    } catch (e) {
+        throw new Error('ERROR - [update project]: ' + e.message);
+    }
+};
+
+export const delete_project = async function (id) {
+    try {
+        const response = await fetch(`${apiUrl}/${id}`, { method: 'DELETE' });
+        if (!response.ok) {
+            throw new Error('Failed to delete project');
+        }
+        return await response.json();
+    } catch (e) {
+        throw new Error('ERROR - [delete project]: ' + e.message);
+    }
 };

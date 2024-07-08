@@ -11,18 +11,6 @@ import {
     SET_GET_PROJECTS_ERROR,
     SET_GET_PROJECTS_CLEAR
 } from "./store/project.slice";
-
-const sequelize = require('./config/database');
-const Project = require('./models/Project');
-const Task = require('./models/Task');
-
-sequelize.sync({ force: false })
-  .then(() => {
-    console.log('Database synced');
-  })
-  .catch(err => {
-    console.error('Error syncing database:', err);
-  });
   
 const mapState = state => state;
 

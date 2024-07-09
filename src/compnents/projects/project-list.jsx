@@ -25,13 +25,13 @@ import TaskList from "../tasks/task-list";
 function Row({ project, isAdmin, setActionClicked, setIdClicked, deleteProject }) {
     const [open, setOpen] = useState(false);
 
-    const handlerDelete = (id,ev) => {
+    const handlerDelete = (id, ev) => {
         ev.preventDefault();
         setActionClicked("delete");
         const deleting = confirm("Are you sure to delete this element?");
         deleting && (async function () {
             await deleteProject(id);
-            
+
         })();
     };
 
@@ -45,7 +45,7 @@ function Row({ project, isAdmin, setActionClicked, setIdClicked, deleteProject }
         setIdClicked(project.id);
     };
     const isComplete = useMemo(
-        () => project.tasks.some((t) => !t.complete),
+        () => project.tasks?.some((t) => !t.complete),
         [project]
     );
 
@@ -82,22 +82,22 @@ function Row({ project, isAdmin, setActionClicked, setIdClicked, deleteProject }
                     <IconButton
                         aria-label="expand row"
                         size="small"
-                        onClick={handlerEdit}
-                        color="primary"
-                        title={"edit project"}
+                        onClick={(e) => handlerDelete(project.id, e)}
+                        color="error"
+                        title={"delete project"}
                     >
-                        <EditOutlinedIcon />
+                        <DeleteOutlineOutlinedIcon />
                     </IconButton>
                     {isAdmin && (
-                            <IconButton
-                                aria-label="expand row"
-                                size="small"
-                                onClick={(e) => handlerDelete(project.id,e)}
-                                color="error"
-                                title={"delete project"}
-                            >
-                                <DeleteOutlineOutlinedIcon />
-                            </IconButton>
+                        <IconButton
+                            aria-label="expand row"
+                            size="small"
+                            onClick={(e) => handlerDelete(project.id, e)}
+                            color="error"
+                            title={"delete project"}
+                        >
+                            <DeleteOutlineOutlinedIcon />
+                        </IconButton>
                     )}
                     <IconButton
                         aria-label="expand row"

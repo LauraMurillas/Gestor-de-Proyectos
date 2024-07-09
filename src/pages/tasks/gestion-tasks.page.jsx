@@ -9,8 +9,8 @@ import { get_tasks } from "../../services/tasks";
 import TableTask from "../../compnents/tasks/table-task";
 
 export async function loader() {
-    const response = await get_tasks();
-    return response ?? [];
+    // const response = await get_tasks();
+    // return response ?? [];
 }
 
 const classes = {
@@ -32,7 +32,7 @@ function GestionTasks() {
                 <section className={`container flex justify-between ${showOutlet ? 'hidden' : ''}`}>
 
                     <h2 className="text-left text-xl py-5 my-auto">Aqui podras gestionar tus projectos.</h2>
-                    <Fab
+                    {/* <Fab
                         title="nav to /create-task"
                         classes={classes.customFab}
                         aria-label="add"
@@ -40,14 +40,14 @@ function GestionTasks() {
                         size="medium"
                     >
                         <AddIcon sx={{ mr: 1 }} /> Add Task
-                    </Fab>
+                    </Fab> */}
                 </section>
 
-                <section className={`container ${showOutlet ? 'hidden' : ''}`} >
+                {/* <section className={`container ${showOutlet ? 'hidden' : ''}`} >
                     {
                         tasks && <TableTask tasks={tasks}/>
                     }
-                </section>
+                </section> */}
 
                 <section className={`container ${!showOutlet ? 'hidden' : ''}`}>
                     <Outlet />

@@ -5,6 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 import { delete_project, get_project_by_id, get_projects, update_project } from "../../../services/projects";
 import { SET_GET_PROJECTS_SUCCESS } from "../../../store/actions/project.actions";
 import { isValidArray } from "../../../helpers/validators";
+import { create_task } from "../../../services/tasks";
 //import { get_users } from "../../../services/users";
 
 const useProjects = () => {
@@ -41,6 +42,7 @@ const useProjects = () => {
 
         // luego el dispatch
         dispatch(SET_GET_PROJECTS_SUCCESS(projectsResponse));
+        setProjects(projectsResponse);
 
 
     }
@@ -50,11 +52,13 @@ const useProjects = () => {
         res && setProject(res);
     }
     // update array tasks
-    const updateProjectTasks = async ({ id, tasks: argTasks }) => {
-        let tasks = project.tasks || [];
-        const body = { ...project, tasks: [...tasks, argTasks] }    
-        await updateProject(body);
-    }
+    const updateProjectTasks = async ({ projectId, newTask }) => {
+        try {
+            await create_task(projectId, newTask);
+        } catch (error) {
+            console.error("Error updating project tasks: ", error);
+        }
+    };
     // update task individual
     const updateProjectTaskById = async ({ id }) => {
         let tasks = project.tasks || [];

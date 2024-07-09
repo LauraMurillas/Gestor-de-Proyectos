@@ -24,11 +24,15 @@ export const get_task_by_id = async function (id) {
     }
 };
 
-export const create_task = async function (taskData) {
+export const create_task = async function (projectId, taskData) {
     try {
+        // Combinar projectId con los datos de la tarea
+        const data = { ...taskData, projectId };
+        console.log(data)
+
         const response = await fetch(apiUrl, {
             method: 'POST',
-            body: JSON.stringify(taskData),
+            body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' },
         });
         if (!response.ok) {

@@ -19,8 +19,8 @@ const classes = {
 }
 
 const IndexPage = () => {
-    //const [actionClicked, setActionClicked] = useState('');
-    //const [idClicked, setIdClicked] = useState('');
+    const [actionClicked, setActionClicked] = useState('');
+    const [idClicked, setIdClicked] = useState('');
     const { projects, getProjects, deleteProject } = useProjects();
     //const { user } = auth;
     const navigate = useNavigate();

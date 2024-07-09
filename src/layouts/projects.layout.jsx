@@ -41,9 +41,9 @@ function ProjectsLayout() {
                             ${location.pathname === "/projects" ? 'bg-slate-500' : ''}`
                         }
                     >{ "Projects".toUpperCase() }</Link>
-                    <Link
+                    {/* <Link
                         className="uppercase px-3 py-2 border text-white border-transparent hover:border-slate-500 hover:bg-slate-500 mr-0 ml-auto rounded-3xl transition__links"
-                        to="/logout">Logout</Link>    
+                        to="/logout">Logout</Link>     */}
                 </nav>
             </Header>
 

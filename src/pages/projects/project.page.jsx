@@ -25,7 +25,7 @@ function Project() {
             </h1>
             <ProjectDetail
                 project={project}
-                updateProjectTasks={updateProjectTasks}
+                // updateProjectTasks={updateProjectTasks}
                 //usersList={usersList}
                 //getUsersList={getUsersList}
                 updateProject={updateProject}

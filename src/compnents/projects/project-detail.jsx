@@ -24,10 +24,10 @@ export async function action({ request }) {
         const values = Object.fromEntries(fd);
 
         const { limitDate, taskDescription } = values;
-        if("".includes(limitDate) && "".includes(taskDescription)) errors.push("los campos son requeridos")
+        if ("".includes(limitDate) && "".includes(taskDescription)) errors.push("los campos son requeridos")
         if ("".includes(limitDate)) errors.push("la fecha limite es requerida");
         if ("".includes(taskDescription)) errors.push("el nombre de la tarea es requerido");
-    
+
         // envio de datos
         if (Object.values(values)) {
             const task = {
@@ -51,29 +51,29 @@ const classes = {
     }
 }
 
-const AddTasksButton = ({ addTask, setAddTask }) => {
+// const AddTasksButton = ({ addTask, setAddTask }) => {
 
-    const handdlerAddTasks = (ev) => {
-        ev.preventDefault();
-        setAddTask(true);
-    }
+//     const handdlerAddTasks = (ev) => {
+//         ev.preventDefault();
+//         setAddTask(true);
+//     }
 
-    return (<>
-            { !addTask && <Fab
-                title="add tasks"
-                onClick={handdlerAddTasks}
-                classes={classes.customFab}
-                aria-label="add"
-                variant="extended"
-                size="small"
-                color="primary"
-                type="submit"
-            >
-                <AddCircleOutlineOutlinedIcon sx={{ mr: 1 }} /> Add Tasks
-            </Fab>}
-    </>
-    );
-}
+//     return (<>
+//         {!addTask && <Fab
+//             title="add tasks"
+//             onClick={handdlerAddTasks}
+//             classes={classes.customFab}
+//             aria-label="add"
+//             variant="extended"
+//             size="small"
+//             color="primary"
+//             type="submit"
+//         >
+//             <AddCircleOutlineOutlinedIcon sx={{ mr: 1 }} /> Add Tasks
+//         </Fab>}
+//     </>
+//     );
+// }
 
 
 
@@ -81,36 +81,34 @@ const AddTasksButton = ({ addTask, setAddTask }) => {
 
 // page principal
 const ProjectDetail = ({ project, updateProjectTasks, updateProject }) => {
-    const [addTask, setAddTask] = useState(false);
-    //const [addUsers, setAddUsers] = useState(false);
-    const [tasks, setTasks] = useState(project?.tasks ?? []);
-    const [newTask, errors] = useActionData() || [];
-    
+    // const [addTask, setAddTask] = useState(false);
+    // //const [addUsers, setAddUsers] = useState(false);
+    // const [tasks, setTasks] = useState(project?.tasks ?? []);
+    // const [newTask, errors] = useActionData() || [];
+
     //const [users, setUsers] = useState(project?.users ?? []);// projecto inside and user list from bbdd
 
     //const { auth } = useAuth();
     //const { user } = auth;
 
     //const isAdmin = isValidObject(user) && user?.role === "ADMIN";
-    
 
-    useEffect(
-        () => {
-            addTask && isValidObject(newTask) && (async () => {
-                if (newTask) {
-                    const nt = {
-                        ...newTask,
-                        limitDate: newTask?.limitDateTask,
-                        taskDescription: newTask?.taskDescription
-                    }
-                    const modified = [...tasks, nt ];
-                    const response = await updateProjectTasks({ id: project.id, tasks: nt });
-                    isValidObject(response) && setTasks(modified);
-                }
-            })();
 
-        }, [newTask]
-    );
+    // useEffect(
+    //     () => {
+    //         addTask && isValidObject(newTask) && (async () => {
+    //             if (newTask) {
+    //                 const projectId = project.id;
+    //                 try {
+    //                     await updateProjectTasks({ projectId, newTask: newTask });
+    //                 } catch (error) {
+    //                     console.error("Error adding task to project: ", error);
+    //                 }
+    //             }
+    //         })();
+
+    //     }, [newTask]
+    // );
 
 
 
@@ -129,17 +127,17 @@ const ProjectDetail = ({ project, updateProjectTasks, updateProject }) => {
             </Grid>
             {/*  Tasks */}
             {
-                <section className="flex items-center py-6 my-auto w-2/3">
-                    {
-                        addTask && <FormAddTasks errors={errors} setAddTask={setAddTask} />
-                    }
-                    <AddTasksButton
-                        addTask={addTask}
-                        setAddTask={setAddTask}
-                    />
-                </section>
+                // <section className="flex items-center py-6 my-auto w-2/3">
+                //     {
+                //         addTask && <FormAddTasks errors={errors} setAddTask={setAddTask} />
+                //     }
+                //     <AddTasksButton
+                //         addTask={addTask}
+                //         setAddTask={setAddTask}
+                //     />
+                // </section>
             }
-            {/* table task */}
+            {/* table task
             <section className="w-2/3 ml-0 mr-auto my-auto">
                 <Typography
                     className="text-left"
@@ -153,13 +151,13 @@ const ProjectDetail = ({ project, updateProjectTasks, updateProject }) => {
                         {
                             tasks?.length === 0 && !addTask && <p className="font-semibold mr-2">No task in this project.</p>
                         }
-                        
+
                         <TaskList tasks={project.tasks} />
                     </>
                 }
-            </section>
-            
-            <section className="w-2/3 ml-0 mr-auto my-auto">
+            </section> */}
+
+            {/* <section className="w-2/3 ml-0 mr-auto my-auto">
                 <Typography
                     variant="h5"
                     gutterBottom
@@ -167,8 +165,8 @@ const ProjectDetail = ({ project, updateProjectTasks, updateProject }) => {
                 >
                     Members
                 </Typography>
-                
-            </section>
+
+            </section> */}
         </main>
     );
 }
